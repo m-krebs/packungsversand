@@ -85,11 +85,7 @@ public void initialize(URL url, ResourceBundle rb) {
     private void getArt(ActionEvent event) {
         int index = buttons.indexOf(event.getSource());
         System.out.println(index);
-        for (Button btn : buttons) {
-            if (buttons.indexOf(btn) != index) {
-                btn.setDisable(true);
-            }
-        }
+
         pressed = buttons.get(index);
     }
 
