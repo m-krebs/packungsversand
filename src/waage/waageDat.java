@@ -54,7 +54,7 @@ public class waageDat {
     }
 
     public static void openPort() {
-        getCOMP("COM4");
+        getCOMP("COM5");
         sp.openPort();
     }
 }

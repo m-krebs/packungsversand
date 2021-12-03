@@ -25,7 +25,6 @@ public class Packungsversand extends Application {
         root.requestFocus();
         stage.setScene(scene);
         stage.show();
-
     }
 
     /**

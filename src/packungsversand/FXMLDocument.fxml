@@ -17,9 +17,9 @@
     <children>
         <BorderPane prefHeight="544.0" prefWidth="827.0">
             <left>
-                <VBox maxHeight="1.7976931348623157E308" prefWidth="204.0" style="-fx-background-color: #7B9AC5;" BorderPane.alignment="CENTER">
+                <VBox fx:id="vbArten" maxHeight="1.7976931348623157E308" prefWidth="204.0" style="-fx-background-color: #7B9AC5;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="btnSchraube" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Schrauben">
+                        <Button fx:id="btnSchrauben" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Schrauben">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
@@ -37,7 +37,7 @@
                                 <Insets bottom="0.5" top="0.5" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="btnMutter" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Muttern">
+                        <Button fx:id="btnMuttern" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Muttern">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
@@ -55,7 +55,7 @@
                                 <Insets bottom="0.5" top="0.5" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="btnNagel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Nägel">
+                        <Button fx:id="btnNaegel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="13.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getArt" prefHeight="50.0" styleClass="buttonKat" text="Nägel">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
