@@ -1,0 +1,57 @@
+
+.buttonInside {
+    -fx-background-radius: 0px;
+    -fx-background-color: #7B9AC5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.buttonInside:hover {
+-fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-background-insets: -3px;
+}
+
+.buttonInside:pressed {
+-fx-background-insets: 2px
+}
+
+.buttonKat {
+-fx-background-color: #7B9AC5;
+-fx-text-fill: white;
+}
+
+.buttonKat:hover {
+    -fx-background-color: rgba(255, 255, 255, .3);
+}
+
+.buttonKat:focused {
+    -fx-border-color: white;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-background-color: rgba(255, 255, 255, .2);
+}
+
+.buttonKat:pressed {
+    -fx-background-insets: 0px 10px 0px 0px;
+    -fx-background-radius: 12px;
+}
+
+
+.buttonSize {
+    -fx-background-color:  #293341;
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-background-radius: 0px;
+}
+
+.buttonSize:hover {
+    -fx-background-insets: -3px;
+    -fx-background-color: rgba(41, 51, 65, .8);
+}
+
+.buttonSize:pressed {
+-fx-background-insets: 1px;
+
+}
