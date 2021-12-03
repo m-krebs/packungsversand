@@ -72,6 +72,8 @@ public void initialize(URL url, ResourceBundle rb) {
     btnAbsenden.setDisable(true);
     artGewicht = new HashMap<>();
     addButtons();
+    // Kommentar
+    //
 }
 
     private void addButtons() {
