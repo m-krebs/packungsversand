@@ -1,3 +1,10 @@
+.root {
+    -fx-background-color: rgba(255, 255, 255, 1);
+}
+
+.bpleft {
+    -fx-background-color: #7B9AC5;
+}
 
 .buttonInside {
     -fx-background-radius: 0px;
@@ -18,22 +25,22 @@
 -fx-background-insets: 2px
 }
 
-.buttonKat {
--fx-background-color: #7B9AC5;
+.buttonCategory {
+-fx-background-color: transparent;
 -fx-text-fill: white;
 }
 
-.buttonKat:hover {
+.buttonCategory:hover {
     -fx-background-color: rgba(255, 255, 255, .3);
 }
 
-.buttonKat:focused {
-    -fx-border-color: white;
+.buttonCategory:focused {
+    -fx-border-color: rgba(255, 255, 255, 1);
     -fx-border-width: 0px 0px 0px 3px;
     -fx-background-color: rgba(255, 255, 255, .2);
 }
 
-.buttonKat:pressed {
+.buttonCategory:pressed {
     -fx-background-insets: 0px 10px 0px 0px;
     -fx-background-radius: 12px;
 }
