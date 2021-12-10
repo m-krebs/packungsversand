@@ -5,15 +5,11 @@
  */
 package packungsversand;
 
-import com.sun.javafx.binding.StringFormatter;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import waage.waageDat;
@@ -29,12 +25,10 @@ import java.util.ResourceBundle;
 
 
 public class FXMLDocumentController implements Initializable {
-    HashMap<Button, Double> artGewicht;
+    HashMap<RadioButton, Double> schraubenGewicht;
     ArrayList<Button> buttons = new ArrayList<>();
     Alert alert = new Alert(Alert.AlertType.ERROR);
-
-    private Button pressed;
-
+    private RadioButton rbPressed;
     // region importFXML
     @FXML
     private VBox vbArten;
@@ -62,38 +56,60 @@ public class FXMLDocumentController implements Initializable {
     private Button btnAbbrechen;
     @FXML
     private Label txtMeldung;
+    @FXML
+    private RadioButton rb3x20;
 
-// endregion
+    @FXML
+    private ToggleGroup grpSchrauben;
+
+    @FXML
+    private RadioButton rb3x40;
+
+    @FXML
+    private RadioButton rb4x30;
+
+    @FXML
+    private RadioButton rb4x50;
+
+    @FXML
+    private RadioButton rb5x40;
+
+    @FXML
+    private RadioButton rb5x60;
+
+    // endregion
 
 
-@Override
-public void initialize(URL url, ResourceBundle rb) {
-    waageDat.openPort();
-    btnAbsenden.setDisable(true);
-    artGewicht = new HashMap<>();
-    addButtons();
-}
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        waageDat.openPort();
+        btnAbsenden.setDisable(true);
+        schraubenGewicht = new HashMap<>();
+        addButtons();
+    }
 
     private void addButtons() {
-        for (Node btn : vbArten.getChildren()) {
-            buttons.add((Button) btn);
-            artGewicht.put((Button) btn, 2D);
+        ObservableList<Toggle> toggles = grpSchrauben.getToggles();
+        double i = 1;
+        for (Toggle tog : toggles) {
+            schraubenGewicht.put((RadioButton) tog, i);
+            i += 0.3;
         }
     }
 
     @FXML
     private void getArt(ActionEvent event) {
-        int index = buttons.indexOf(event.getSource());
-        System.out.println(index);
-
-        pressed = buttons.get(index);
+//        int index = buttons.indexOf(event.getSource());
+//        System.out.println(index);
+//
+//        pressed = buttons.get(index);
     }
 
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            double need = artGewicht.get(pressed) * Double.parseDouble(txtAnzahl.getText());
-            System.out.println(artGewicht.get(pressed) + " * " + txtAnzahl.getText() + " = " + need);
+            double need = schraubenGewicht.get(rbPressed) * Double.parseDouble(txtAnzahl.getText());
+            System.out.println(schraubenGewicht.get(rbPressed) + " * " + txtAnzahl.getText() + " = " + need);
             Double have = 0.0;
             System.out.println(have);
 
@@ -104,12 +120,12 @@ public void initialize(URL url, ResourceBundle rb) {
             if (have >= need) {
                 txtGewicht.setStyle("-fx-border-color: green");
                 btnAbsenden.setDisable(false);
-                double diff = Math.ceil(have / artGewicht.get(pressed));
-                txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, pressed.getText()));
+                double diff = Math.ceil(have / schraubenGewicht.get(rbPressed));
+                txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, rbPressed.getText()));
             } else {
                 txtGewicht.setStyle("-fx-border-color: red");
-                double diff = Math.ceil((need - have) / artGewicht.get(pressed));
-                String text = String.format("Es fehlen %.0f %s", diff, pressed.getText());
+                double diff = Math.ceil((need - have) / schraubenGewicht.get(rbPressed));
+                String text = String.format("Es fehlen %.0f %s", diff, rbPressed.getText());
                 txtMeldung.setText(text);
             }
         } catch (NullPointerException np) {
@@ -126,6 +142,14 @@ public void initialize(URL url, ResourceBundle rb) {
         }
         txtGewicht.setText("");
         txtAnzahl.setText("");
+    }
+
+    @FXML
+    void getSchraube(ActionEvent event) {
+        RadioButton rb = (RadioButton) event.getSource();
+        double gewicht = schraubenGewicht.get(rb);
+        System.out.println(gewicht);
+        rbPressed = rb;
     }
 
 }

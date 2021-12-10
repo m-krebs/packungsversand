@@ -81,7 +81,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" selected="true" text="3x20">
+                                    <RadioButton fx:id="rb3x20" mnemonicParsing="false" onAction="#getSchraube" selected="true" text="3x20">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -89,12 +89,12 @@
                                           <ToggleGroup fx:id="grpSchrauben" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="3x20" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb3x40" mnemonicParsing="false" onAction="#getSchraube" text="3x40" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="3x20" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb4x30" mnemonicParsing="false" onAction="#getSchraube" text="4x30" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -103,17 +103,17 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="3x40" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb4x50" mnemonicParsing="false" onAction="#getSchraube" text="4x50" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="3x40" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb5x40" mnemonicParsing="false" onAction="#getSchraube" text="5x40" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="3x40" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb5x60" mnemonicParsing="false" onAction="#getSchraube" text="5x60" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
