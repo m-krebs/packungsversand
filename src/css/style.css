@@ -62,3 +62,20 @@
 -fx-background-insets: 1px;
 
 }
+
+.accordion .titled-pane .title {
+    -fx-background-color: transparent;
+}
+
+.accordion .titled-pane .arrow-button .arrow {
+    -fx-background-color: white;
+}
+
+.accordion .titled-pane > *.content{
+    -fx-background-color: transparent;
+}
+
+.titled-pane {
+    -fx-border-width: 0;
+    -fx-border-color: yellow;
+}
