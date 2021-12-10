@@ -68,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
 
 @Override
 public void initialize(URL url, ResourceBundle rb) {
-    //waageDat.openPort();
+    waageDat.openPort();
     btnAbsenden.setDisable(true);
     artGewicht = new HashMap<>();
     addButtons();
