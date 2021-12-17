@@ -5,10 +5,10 @@
  */
 package packungsversand;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,10 +25,18 @@ import java.util.ResourceBundle;
 
 
 public class FXMLDocumentController implements Initializable {
-    HashMap<RadioButton, Double> schraubenGewicht;
-    ArrayList<Button> buttons = new ArrayList<>();
+    HashMap<Button, Double> schraubenGewicht;
+    //HashMap<RadioButton, Double> schraubenGewicht;
+
+    ArrayList<Button> schrauben = new ArrayList<>();
+    ArrayList<Button> arten = new ArrayList<>();
+
     Alert alert = new Alert(Alert.AlertType.ERROR);
-    private RadioButton rbPressed;
+    //private RadioButton rbPressed;
+    private String art;
+    private Button pressed;
+    private Button pressedArt;
+
     // region importFXML
     @FXML
     private VBox vbArten;
@@ -77,6 +85,26 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private RadioButton rb5x60;
 
+    @FXML
+    private Button btnSch3x20;
+
+    @FXML
+    private Button btnSch3x40;
+
+    @FXML
+    private Button btnSch4x30;
+
+    @FXML
+    private Button btnSch4x50;
+
+    @FXML
+    private Button btnSch5x40;
+
+    @FXML
+    private Button btnSch5x60;
+
+    @FXML
+    private HBox hbSchButtons;
     // endregion
 
 
@@ -86,48 +114,43 @@ public class FXMLDocumentController implements Initializable {
         btnAbsenden.setDisable(true);
         schraubenGewicht = new HashMap<>();
         addButtons();
+
     }
 
     private void addButtons() {
+        double i = 1;
+        for (Node btn : hbSchButtons.getChildren()) {
+            schrauben.add((Button) btn);
+            i += 0.3;
+            schraubenGewicht.put((Button) btn, i);
+        }
+
+        for (Node btn : vbArten.getChildren()) {
+            arten.add((Button) btn);
+        }
+
+        /* Radion Buttons von früher
         ObservableList<Toggle> toggles = grpSchrauben.getToggles();
         double i = 1;
         for (Toggle tog : toggles) {
             schraubenGewicht.put((RadioButton) tog, i);
             i += 0.3;
         }
+        */
+
     }
 
     @FXML
     private void getArt(ActionEvent event) {
-//        int index = buttons.indexOf(event.getSource());
-//        System.out.println(index);
-//
-//        pressed = buttons.get(index);
+        int index = arten.indexOf((Button) event.getSource());
+        System.out.println(index);
+        pressedArt = arten.get(index);
     }
 
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            double need = schraubenGewicht.get(rbPressed) * Double.parseDouble(txtAnzahl.getText());
-            System.out.println(schraubenGewicht.get(rbPressed) + " * " + txtAnzahl.getText() + " = " + need);
-            Double have = 0.0;
-            System.out.println(have);
-
-            have = Double.valueOf((scanWaage.getData()));
-
-            System.out.println(have);
-            txtGewicht.setText(String.valueOf(have));
-            if (have >= need) {
-                txtGewicht.setStyle("-fx-border-color: green");
-                btnAbsenden.setDisable(false);
-                double diff = Math.ceil(have / schraubenGewicht.get(rbPressed));
-                txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, rbPressed.getText()));
-            } else {
-                txtGewicht.setStyle("-fx-border-color: red");
-                double diff = Math.ceil((need - have) / schraubenGewicht.get(rbPressed));
-                String text = String.format("Es fehlen %.0f %s", diff, rbPressed.getText());
-                txtMeldung.setText(text);
-            }
+            berechneGewicht(pressed);
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
             alert.showAndWait();
@@ -135,9 +158,32 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    private void berechneGewicht(ButtonBase pressed) {
+        double need = schraubenGewicht.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
+        System.out.println(schraubenGewicht.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
+        Double have = 0.0;
+        System.out.println(have);
+
+        have = Double.valueOf((scanWaage.getData()));
+
+        System.out.println(have);
+        txtGewicht.setText(String.valueOf(have));
+        if (have >= need) {
+            txtGewicht.setStyle("-fx-border-color: green");
+            btnAbsenden.setDisable(false);
+            double diff = Math.ceil(have / schraubenGewicht.get(this.pressed));
+            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText()));
+        } else {
+            txtGewicht.setStyle("-fx-border-color: red");
+            double diff = Math.ceil((need - have) / schraubenGewicht.get(this.pressed));
+            String text = String.format("Es fehlen %.0f %s", diff, this.pressed.getText());
+            txtMeldung.setText(text);
+        }
+    }
+
     @FXML
     public void onAbbrechen(ActionEvent event) {
-        for (Button btn : buttons) {
+        for (Button btn : schrauben) {
             btn.setDisable(false);
         }
         txtGewicht.setText("");
@@ -145,11 +191,21 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void getSchraube(ActionEvent event) {
+    private void getSchraube(ActionEvent event) {
+        /*
         RadioButton rb = (RadioButton) event.getSource();
         double gewicht = schraubenGewicht.get(rb);
         System.out.println(gewicht);
-        rbPressed = rb;
+        pressed = rb;
+
+        Button btn = (Button) event.getSource();
+        double gewicht = schraubenGewicht.get(btn);
+        System.out.println("Gewicht: " + gewicht);
+        pressed = btn;
+        */
+        int index = schrauben.indexOf((Button) event.getSource());
+        System.out.println(index);
+        pressedArt = schrauben.get(index);
     }
 
 }
