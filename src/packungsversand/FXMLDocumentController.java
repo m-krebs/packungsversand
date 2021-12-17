@@ -7,9 +7,12 @@ package packungsversand;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import waage.scanWaage;
@@ -77,12 +80,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private RadioButton rb5x60;
 
+    @FXML
+    private BorderPane bpane;
+
     // endregion
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        scanWaage.openPort();
+//        scanWaage.openPort();
         btnAbsenden.setDisable(true);
         schraubenGewicht = new HashMap<>();
         addButtons();
@@ -151,5 +157,4 @@ public class FXMLDocumentController implements Initializable {
         System.out.println(gewicht);
         rbPressed = rb;
     }
-
 }
