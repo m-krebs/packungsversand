@@ -173,57 +173,57 @@
                         </HBox>
                      </content>
                   </TitledPane>
+                  <TitledPane animated="false" text="Nägel">
+                     <content>
+                        <HBox prefHeight="65.0" prefWidth="202.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" selected="true" text="1,2x20">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="grpSchrauben11" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="2x20" toggleGroup="$grpSchrauben11">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="3x65" toggleGroup="$grpSchrauben11">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" text="1,4x25" toggleGroup="$grpSchrauben11">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="2,5x55" toggleGroup="$grpSchrauben11">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="3,5x90" toggleGroup="$grpSchrauben11">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </content>
+                  </TitledPane>
               </panes>
             </Accordion>
-            <TitledPane animated="false" text="Nägel">
-               <content>
-                  <HBox prefHeight="65.0" prefWidth="202.0">
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <RadioButton mnemonicParsing="false" selected="true" text="1,2x20">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="grpSchrauben11" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="2x20" toggleGroup="$grpSchrauben11">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="3x65" toggleGroup="$grpSchrauben11">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <RadioButton mnemonicParsing="false" text="1,4x25" toggleGroup="$grpSchrauben11">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="2,5x55" toggleGroup="$grpSchrauben11">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="3,5x90" toggleGroup="$grpSchrauben11">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </RadioButton>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </content>
-            </TitledPane>
               </children>
               <padding>
                   <Insets top="10.0" />
