@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import waage.waageDat;
+import waage.scanWaage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        waageDat.openPort();
+        scanWaage.openPort();
         btnAbsenden.setDisable(true);
         schraubenGewicht = new HashMap<>();
         addButtons();
@@ -113,7 +113,7 @@ public class FXMLDocumentController implements Initializable {
             Double have = 0.0;
             System.out.println(have);
 
-            have = Double.valueOf((waageDat.getData()));
+            have = Double.valueOf((scanWaage.getData()));
 
             System.out.println(have);
             txtGewicht.setText(String.valueOf(have));

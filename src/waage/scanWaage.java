@@ -4,7 +4,7 @@ import com.fazecast.jSerialComm.SerialPort;
 
 import java.nio.charset.StandardCharsets;
 
-public class waageDat {
+public class scanWaage {
 
     public static SerialPort sp;
 
@@ -54,7 +54,7 @@ public class waageDat {
     }
 
     public static void openPort() {
-        getCOMP("COM4");
+        getCOMP("COM5");
         sp.openPort();
     }
 }
