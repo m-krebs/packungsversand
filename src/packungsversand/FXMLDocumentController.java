@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import waage.scanWaage;
@@ -45,11 +46,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private HBox hbArten;
     @FXML
-    private Button btnSchraube;
+    private Button btnSchrauben;
     @FXML
-    private Button btnMutter;
+    private Button btnMuttern;
     @FXML
-    private Button btnNagel;
+    private Button btnNaegel;
     @FXML
     private TextField txtAnzahl;
     @FXML
@@ -105,6 +106,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private HBox hbSchButtons;
+
+    @FXML
+    private VBox vbArt;
+
+    @FXML
+    private BorderPane bpMain;
     // endregion
 
 
@@ -142,8 +149,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void getArt(ActionEvent event) {
+        if (event.getSource().equals(btnSchrauben)) {
+            SchraubenPane sp = new SchraubenPane();
+            vbArt.getChildren().clear();
+            vbArt.getChildren().add(sp);
+        }
+
         int index = arten.indexOf((Button) event.getSource());
-        System.out.println(index);
+//        System.out.println(index);
         pressedArt = arten.get(index);
     }
 
@@ -205,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
         */
         int index = schrauben.indexOf((Button) event.getSource());
         System.out.println(index);
-        pressedArt = schrauben.get(index);
+        pressed = schrauben.get(index);
     }
 
 }
