@@ -8,6 +8,13 @@ public class scanWaage {
 
     public static SerialPort sp;
 
+    public static void main(String[] args) {
+        SerialPort[] ports = SerialPort.getCommPorts();
+        for (SerialPort port : ports) {
+            System.out.println("Port: " + port.getDescriptivePortName());
+        }
+    }
+
     public static void getCOMP(String cport) {
         SerialPort[] ports = SerialPort.getCommPorts();
         SerialPort comPort = null;
@@ -52,6 +59,7 @@ public class scanWaage {
         }
         return "Keine Daten";
     }
+
 
     public static void openPort() {
         getCOMP("COM4");
