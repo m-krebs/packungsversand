@@ -32,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     ArrayList<Button> buttons = new ArrayList<>();
     Alert alert = new Alert(Alert.AlertType.ERROR);
     private RadioButton rbPressed;
+
     // region importFXML
     @FXML
     private VBox vbArten;
