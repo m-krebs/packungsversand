@@ -36,7 +36,6 @@ public class FXMLDocumentController implements Initializable {
     private String art;
     private Button pressed;
     private Button pressedArt;
-    private SchraubenPane sp;
 
     // region importFXML
     @FXML
@@ -144,7 +143,6 @@ public class FXMLDocumentController implements Initializable {
         btnAbsenden.setDisable(true);
         schraubenGewicht = new HashMap<>();
         addButtons();
-        sp = new SchraubenPane();
     }
 
     private void addButtons() {
