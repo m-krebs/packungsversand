@@ -10,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import waage.scanWaage;
 
 import java.net.URL;
@@ -26,6 +24,7 @@ import java.util.ResourceBundle;
 
 
 public class FXMLDocumentController implements Initializable {
+    public Pane paneArt;
     HashMap<Button, Double> schraubenGewicht;
     //HashMap<RadioButton, Double> schraubenGewicht;
 
@@ -37,14 +36,13 @@ public class FXMLDocumentController implements Initializable {
     private String art;
     private Button pressed;
     private Button pressedArt;
+    private SchraubenPane sp;
 
     // region importFXML
     @FXML
     private VBox vbArten;
     @FXML
     private HBox hbTitle;
-    @FXML
-    private HBox hbArten;
     @FXML
     private Button btnSchrauben;
     @FXML
@@ -59,8 +57,6 @@ public class FXMLDocumentController implements Initializable {
     private Button btnWiegen;
     @FXML
     private Button btnAbsenden;
-    @FXML
-    private TextField txtArtGewicht;
     @FXML
     private Button btnAbbrechen;
     @FXML
@@ -112,16 +108,43 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private BorderPane bpMain;
+
+    @FXML
+    private StackPane stkPane;
     // endregion
+    @FXML
+    private Pane paneSchraube;
+    @FXML
+    private Pane paneMutter;
+    @FXML
+    private HBox hbSchButtons1;
+    @FXML
+    private Button btnSch3x201;
+    @FXML
+    private Button btnSch3x401;
+    @FXML
+    private Button btnSch4x301;
+    @FXML
+    private Button btnSch4x501;
+    @FXML
+    private Button btnSch5x401;
+    @FXML
+    private Button btnSch5x601;
+    @FXML
+    private ToggleGroup grpSchrauben1;
+    @FXML
+    private ToggleGroup grpSchrauben11;
+    @FXML
+    private Pane paneNaegel;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        scanWaage.openPort();
+        //scanWaage.openPort();
         btnAbsenden.setDisable(true);
         schraubenGewicht = new HashMap<>();
         addButtons();
-
+        sp = new SchraubenPane();
     }
 
     private void addButtons() {
@@ -150,9 +173,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void getArt(ActionEvent event) {
         if (event.getSource().equals(btnSchrauben)) {
-            SchraubenPane sp = new SchraubenPane();
-            vbArt.getChildren().clear();
-            vbArt.getChildren().add(sp);
+            paneSchraube.toFront();
+        } else if (event.getSource().equals(btnMuttern)) {
+            paneMutter.toFront();
+        } else {
+            paneNaegel.toFront();
         }
 
         int index = arten.indexOf((Button) event.getSource());
@@ -219,6 +244,10 @@ public class FXMLDocumentController implements Initializable {
         int index = schrauben.indexOf((Button) event.getSource());
         System.out.println(index);
         pressed = schrauben.get(index);
+    }
+
+    public VBox getVbArt() {
+        return vbArt;
     }
 
 }

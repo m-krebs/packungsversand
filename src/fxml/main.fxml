@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -97,20 +98,52 @@
       <center>
           <VBox fx:id="vbArt" alignment="TOP_CENTER" prefHeight="319.0" prefWidth="320.0" spacing="15.0" BorderPane.alignment="CENTER">
               <children>
-            <Pane fx:id="paneArt">
+            <StackPane fx:id="stkPane">
                <children>
-                        <HBox fx:id="hbSchButtons" prefHeight="31.0" prefWidth="603.0">
-                            <children>
-                                <Button fx:id="btnSch3x20" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x20" textFill="WHITE" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnSch3x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnSch4x30" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnSch4x50" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnSch5x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="btnSch5x60" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
-                            </children>
+                  <Pane fx:id="paneSchraube">
+                     <children>
+                              <HBox fx:id="hbSchButtons" prefHeight="31.0" prefWidth="603.0">
+                                  <children>
+                                      <Button fx:id="btnSch3x20" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x20" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch3x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch4x30" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch4x50" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch5x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch5x60" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
+                                  </children>
+                              </HBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneMutter">
+                     <children>
+                        <HBox fx:id="hbSchButtons1" prefHeight="31.0" prefWidth="603.0">
+                           <children>
+                              <Button fx:id="btnSch3x201" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch3x401" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch4x301" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch4x501" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch5x401" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch5x601" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
+                           </children>
                         </HBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneNaegel">
+                     <children>
+                        <HBox fx:id="hbSchButtons2" prefHeight="31.0" prefWidth="603.0">
+                           <children>
+                              <Button fx:id="btnSch3x202" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Schraube" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch3x402" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch4x302" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch4x502" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch5x402" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnSch5x602" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
+            </StackPane>
             <HBox>
                <children>
                   <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="100">
