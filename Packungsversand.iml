@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jSerialComm-2.7.0" level="project" />
+    <orderEntry type="library" name="ostermillerutils-1.08.02" level="project" />
   </component>
 </module>

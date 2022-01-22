@@ -1,51 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package packungsversand;
 
-import javafx.collections.ObservableList;
+import com.Ostermiller.util.CSVParser;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import waage.scanWaage;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-/**
- * @author Ralf, Michael
- */
-
 
 public class FXMLDocumentController implements Initializable {
-    HashMap<RadioButton, Double> schraubenGewicht;
-    ArrayList<Button> buttons = new ArrayList<>();
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    private RadioButton rbPressed;
+    //region Variablen
+    HashMap<Button, Double> alleWaren;
 
-    // region importFXML
+    ArrayList<Button> waren = new ArrayList<>();
+    ArrayList<Button> arten = new ArrayList<>();
+
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+
+    private String art;
+    private Button pressed;
+    private Button pressedArt;
+    //endregion
+
+    //region FXML
     @FXML
     private VBox vbArten;
     @FXML
     private HBox hbTitle;
     @FXML
-    private HBox hbArten;
+    private Button btnSchrauben;
     @FXML
-    private Button btnSchraube;
+    private Button btnMuttern;
     @FXML
-    private Button btnMutter;
-    @FXML
-    private Button btnNagel;
+    private Button btnNaegel;
     @FXML
     private TextField txtAnzahl;
     @FXML
@@ -55,86 +51,120 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnAbsenden;
     @FXML
-    private TextField txtArtGewicht;
-    @FXML
     private Button btnAbbrechen;
     @FXML
     private Label txtMeldung;
     @FXML
     private RadioButton rb3x20;
-
     @FXML
     private ToggleGroup grpSchrauben;
-
     @FXML
     private RadioButton rb3x40;
-
     @FXML
     private RadioButton rb4x30;
-
     @FXML
     private RadioButton rb4x50;
-
     @FXML
     private RadioButton rb5x40;
-
     @FXML
     private RadioButton rb5x60;
-
     @FXML
-    private BorderPane bpane;
-
-    // endregion
-
+    private Button btnSch3x20;
+    @FXML
+    private Button btnSch3x40;
+    @FXML
+    private Button btnSch4x30;
+    @FXML
+    private Button btnSch4x50;
+    @FXML
+    private Button btnSch5x40;
+    @FXML
+    private Button btnSch5x60;
+    @FXML
+    private HBox hbSchButtons;
+    @FXML
+    private VBox vbArt;
+    @FXML
+    private BorderPane bpMain;
+    @FXML
+    private StackPane stkPane;
+    @FXML
+    private Pane paneSchraube;
+    @FXML
+    private Pane paneMutter;
+    @FXML
+    private HBox hbMutterButtons;
+    @FXML
+    private ToggleGroup grpSchrauben1;
+    @FXML
+    private ToggleGroup grpSchrauben11;
+    @FXML
+    private Pane paneNaegel;
+    @FXML
+    private Button btnNaeKerb;
+    @FXML
+    private Button btnNaeStift;
+    @FXML
+    private Button btnNaeDoppelkopf;
+    @FXML
+    private Button btnNaeHaken;
+    @FXML
+    private Button btnNaeHuf;
+    @FXML
+    private Button btnNaeAnker;
+    @FXML
+    private HBox hbNaegelButtons;
+    @FXML
+    private Button btnMutSechskant;
+    @FXML
+    private Button btnMutVierkant;
+    @FXML
+    private Button btnMutFluegel;
+    @FXML
+    private Button btnMutSterngriff;
+    @FXML
+    private Button btnMutKreuzloch;
+    @FXML
+    private Button btnMutNut;
+    //endregion
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        scanWaage.openPort();
         btnAbsenden.setDisable(true);
-        schraubenGewicht = new HashMap<>();
+        alleWaren = new HashMap<>();
+        alleWaren = new HashMap<>();
         addButtons();
     }
 
-    private void addButtons() {
-        ObservableList<Toggle> toggles = grpSchrauben.getToggles();
-        double i = 1;
-        for (Toggle tog : toggles) {
-            schraubenGewicht.put((RadioButton) tog, i);
-            i += 0.3;
-        }
-    }
+    //region FXML Methoden
 
     @FXML
     private void getArt(ActionEvent event) {
-//        int index = buttons.indexOf(event.getSource());
-//        System.out.println(index);
-//
-//        pressed = buttons.get(index);
+        if (event.getSource().equals(btnSchrauben)) {
+            paneSchraube.toFront();
+            paneSchraube.setVisible(true);
+            paneMutter.setVisible(false);
+            paneNaegel.setVisible(false);
+        } else if (event.getSource().equals(btnMuttern)) {
+            paneMutter.toFront();
+            paneMutter.setVisible(true);
+            paneNaegel.setVisible(false);
+            paneSchraube.setVisible(false);
+        } else {
+            paneNaegel.toFront();
+            paneNaegel.setVisible(true);
+            paneMutter.setVisible(false);
+            paneSchraube.setVisible(false);
+        }
+
+        int index = arten.indexOf((Button) event.getSource());
+        pressedArt = arten.get(index);
     }
 
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            double need = schraubenGewicht.get(rbPressed) * Double.parseDouble(txtAnzahl.getText());
-            System.out.println(schraubenGewicht.get(rbPressed) + " * " + txtAnzahl.getText() + " = " + need);
-            Double have = 0.0;
-            System.out.println(have);
-
-            have = Double.valueOf((scanWaage.getData()));
-
-            System.out.println(have);
-            txtGewicht.setText(String.valueOf(have));
-            if (have >= need) {
-                txtGewicht.setStyle("-fx-border-color: green");
-                btnAbsenden.setDisable(false);
-                double diff = Math.ceil(have / schraubenGewicht.get(rbPressed));
-                txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, rbPressed.getText()));
-            } else {
-                txtGewicht.setStyle("-fx-border-color: red");
-                double diff = Math.ceil((need - have) / schraubenGewicht.get(rbPressed));
-                String text = String.format("Es fehlen %.0f %s", diff, rbPressed.getText());
-                txtMeldung.setText(text);
-            }
+            berechneGewicht(pressed);
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
             alert.showAndWait();
@@ -144,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void onAbbrechen(ActionEvent event) {
-        for (Button btn : buttons) {
+        for (Button btn : waren) {
             btn.setDisable(false);
         }
         txtGewicht.setText("");
@@ -152,10 +182,68 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    void getSchraube(ActionEvent event) {
-        RadioButton rb = (RadioButton) event.getSource();
-        double gewicht = schraubenGewicht.get(rb);
-        System.out.println(gewicht);
-        rbPressed = rb;
+    private void getSchraube(ActionEvent event) {
+        int index = waren.indexOf((Button) event.getSource());
+        pressed = waren.get(index);
     }
+
+    //endregion
+
+    //region Util
+    private void addButtons() {
+        for (Node btn : hbSchButtons.getChildren()) {
+            waren.add((Button) btn);
+        }
+        for (Node btn : hbNaegelButtons.getChildren()) {
+            waren.add((Button) btn);
+        }
+        for (Node btn : hbMutterButtons.getChildren()) {
+            waren.add((Button) btn);
+        }
+
+        for (Node btn : vbArten.getChildren()) {
+            arten.add((Button) btn);
+        }
+        readCSV();
+    }
+
+    private void berechneGewicht(ButtonBase pressed) {
+        double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
+        System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
+        Double have = 0.0;
+        System.out.println(have);
+
+        have = Double.valueOf((scanWaage.getData()));
+
+        System.out.println(have);
+        txtGewicht.setText(String.valueOf(have));
+        if (have >= need) {
+            txtGewicht.setStyle("-fx-border-color: green");
+            btnAbsenden.setDisable(false);
+            double diff = Math.ceil(have / alleWaren.get(this.pressed));
+            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText()));
+        } else {
+            txtGewicht.setStyle("-fx-border-color: red");
+            double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
+            String text = String.format("Es fehlen %.0f %s", diff, this.pressed.getText());
+            txtMeldung.setText(text);
+        }
+    }
+
+    private void readCSV() {
+        try {
+            CSVParser csvParser = new CSVParser(new FileReader("src/packungsversand/waren.csv"));
+            csvParser.changeDelimiter(';');
+            String[][] values = csvParser.getAllValues();
+            for (int i = 0; i < values.length; i++) {
+                alleWaren.put(waren.get(i), Double.valueOf(values[i][1]));
+            }
+            csvParser.close();
+        } catch (IOException e) {
+            System.out.println("File Not found");
+        }
+    }
+    //endregion
+
+
 }
