@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="227.0" prefWidth="386.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortScannerLoader">
+<fx:root prefHeight="227.0" prefWidth="386.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortPickerController">
     <children>
         <Button fx:id="btnFertig" layoutX="273.0" layoutY="125.0" mnemonicParsing="false" text="Fertig" />
         <ChoiceBox fx:id="chbPort" layoutX="64.0" layoutY="82.0" prefHeight="25.0" prefWidth="255.0" />

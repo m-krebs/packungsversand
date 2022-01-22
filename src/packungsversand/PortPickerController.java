@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import static javafx.scene.control.Alert.AlertType;
 
-public class PortScannerLoader extends AnchorPane {
+public class PortPickerController extends AnchorPane {
     @FXML
     private Label txtInfo;
     @FXML
@@ -20,10 +20,10 @@ public class PortScannerLoader extends AnchorPane {
     @FXML
     private Button btnAbbr;
 
-    public PortScannerLoader(Stage owner) {
+    public PortPickerController(Stage owner) {
 
         owner.initOwner(owner);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("portSelector.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("portPicker.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
