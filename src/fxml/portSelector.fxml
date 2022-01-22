@@ -6,16 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="200.0" prefWidth="415.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortScannerLoader">
+<fx:root prefHeight="227.0" prefWidth="386.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortScannerLoader">
     <children>
-        <Button fx:id="btnFertig" layoutX="261.0" layoutY="125.0" mnemonicParsing="false" text="Fertig" />
-        <ChoiceBox fx:id="ccbPorts" layoutX="64.0" layoutY="82.0" prefHeight="25.0" prefWidth="244.0" />
+        <Button fx:id="btnFertig" layoutX="273.0" layoutY="125.0" mnemonicParsing="false" text="Fertig" />
+        <ChoiceBox fx:id="chbPort" layoutX="64.0" layoutY="82.0" prefHeight="25.0" prefWidth="255.0" />
         <Label layoutX="64.0" layoutY="50.0" text="Wählen Sie ein Gerät:">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-        <Label fx:id="lblInfo" layoutX="315.0" layoutY="86.0" text="Info" />
+        <Label fx:id="txtInfo" layoutX="332.0" layoutY="86.0" text="Info" />
+      <Button fx:id="btnAbbr" layoutX="188.0" layoutY="125.0" mnemonicParsing="false" text="Abbrechen" />
+      <Button fx:id="btnTest" layoutX="64.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Verbindung testen" />
 
     </children>
 </fx:root>
