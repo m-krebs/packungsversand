@@ -133,6 +133,7 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        scanWaage.openPort();
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
         alleWaren = new HashMap<>();
