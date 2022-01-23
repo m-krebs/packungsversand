@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sun.applet.Main;
 
 
 public class Packungsversand extends Application {
@@ -14,11 +15,14 @@ public class Packungsversand extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/main.fxml"));
+        /*Parent root = FXMLLoader.load(getClass().getResource("../fxml/main.fxml"));
         Scene scene = new Scene(root);
         root.requestFocus();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+
+        new MainWindow();
+//        new PortPicker(stage);
     }
 
     

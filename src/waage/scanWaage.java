@@ -62,7 +62,7 @@ public class scanWaage {
 
 
     public static void openPort() {
-        getCOMP("COM4");
+        getCOMP("COM3");
         sp.openPort();
     }
 }

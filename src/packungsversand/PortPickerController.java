@@ -1,14 +1,24 @@
 package packungsversand;
 
+import com.fazecast.jSerialComm.SerialPort;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import static javafx.scene.control.Alert.AlertType;
 
-public class PortPickerController extends AnchorPane {
+public class PortPickerController extends Stage implements Initializable {
     @FXML
     private Label txtInfo;
     @FXML
@@ -20,17 +30,30 @@ public class PortPickerController extends AnchorPane {
     @FXML
     private Button btnAbbr;
 
-    public PortPickerController(Stage owner) {
+    private ObservableList<String> mdlPorts;
 
-        owner.initOwner(owner);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("portPicker.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+    @FXML
+    public void onBtnClick(ActionEvent actionEvent) {
+        Button temp = (Button) actionEvent.getSource();
+        if (temp == btnAbbr){
+            ((Stage)btnAbbr.getScene().getWindow()).close();
+        } else if (temp == btnFertig) {
+            System.out.println("Fertig");
+        } else {
 
-        try {
-            fxmlLoader.load();
-        } catch (Exception e) {
-            new Alert(AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+            System.out.println(chbPort.getValue());
+            System.out.println("Test Connection");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        mdlPorts = FXCollections.observableArrayList();
+        chbPort.setItems(mdlPorts);
+        SerialPort[] ports = SerialPort.getCommPorts();
+        for (SerialPort port : ports) {
+            mdlPorts.add(port.getDescriptivePortName());
+        }
+        chbPort.getSelectionModel().selectFirst();
     }
 }

@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import waage.scanWaage;
 
 import java.io.FileReader;
@@ -126,6 +128,7 @@ public class FXMLDocumentController implements Initializable {
     private Button btnMutKreuzloch;
     @FXML
     private Button btnMutNut;
+
     //endregion
 
     @Override
@@ -182,7 +185,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void getSchraube(ActionEvent event) {
+    private void getSchraube(ActionEvent event) throws IOException {
         int index = waren.indexOf((Button) event.getSource());
         pressed = waren.get(index);
     }
