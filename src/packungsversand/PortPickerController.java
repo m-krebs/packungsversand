@@ -36,6 +36,7 @@ public class PortPickerController extends Stage implements Initializable {
         } else if (temp == btnOK) {
             SerialPort port = (SerialPort) chbPort.getSelectionModel().getSelectedItem();
             if (scanWaage.testConnection(port)) {
+                alert.setTitle("Erfolg");
                 alert.setContentText("Verbindung erfolgreich");
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.showAndWait();
@@ -46,6 +47,7 @@ public class PortPickerController extends Stage implements Initializable {
                 }
                 closeWindow(btnOK);
             } else {
+                alert.setTitle("Verbindungsfehler");
                 alert.setContentText("Verbindung fehlgeschlagen");
                 alert.setAlertType(AlertType.ERROR);
                 alert.show();
