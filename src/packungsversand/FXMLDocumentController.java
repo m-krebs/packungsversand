@@ -29,6 +29,7 @@ public class FXMLDocumentController implements Initializable {
     private String art;
     private Button pressed;
     private Button pressedArt;
+
     //endregion
 
     //region FXML
