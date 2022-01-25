@@ -10,12 +10,9 @@ public class scanWaage {
 
     public static void main(String[] args) {
         SerialPort[] ports = SerialPort.getCommPorts();
-        sp = ports[0];
         for (SerialPort port : ports) {
             System.out.println("Port: " + port.getDescriptivePortName());
         }
-        String s = getData();
-        System.out.println(s);
     }
 
     public static void getCOMP(String cport) {
@@ -58,7 +55,7 @@ public class scanWaage {
 
             }
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return "Keine Daten";
     }

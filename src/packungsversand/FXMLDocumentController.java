@@ -19,13 +19,14 @@ import java.util.ResourceBundle;
 
 public class FXMLDocumentController implements Initializable {
     //region Variablen
-    private HashMap<Button, Double> alleWaren;
+    HashMap<Button, Double> alleWaren;
 
-    private ArrayList<Button> waren = new ArrayList<>();
-    private ArrayList<Button> arten = new ArrayList<>();
+    ArrayList<Button> waren = new ArrayList<>();
+    ArrayList<Button> arten = new ArrayList<>();
 
-    private Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert alert = new Alert(Alert.AlertType.ERROR);
 
+    private String art;
     private Button pressed;
     private Button pressedArt;
     //endregion
@@ -131,10 +132,8 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
+        alleWaren = new HashMap<>();
         addButtons();
-        DialogPane dialog = alert.getDialogPane();
-        alert.setHeaderText(null);
-        dialog.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
     }
 
     //region FXML Methoden
@@ -165,15 +164,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            berechneGewicht();
+            berechneGewicht(pressed);
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
-            alert.showAndWait();
-        } catch (RuntimeException re) {
-            alert.setContentText("Bitte die Waage anschließen");
-            alert.showAndWait();
-        } catch (Exception e) {
-            alert.setContentText("Andere Exception");
             alert.showAndWait();
         }
 
@@ -207,16 +200,18 @@ public class FXMLDocumentController implements Initializable {
         for (Node btn : hbMutterButtons.getChildren()) {
             waren.add((Button) btn);
         }
+
         for (Node btn : vbArten.getChildren()) {
             arten.add((Button) btn);
         }
         readCSV();
     }
 
-    private void berechneGewicht() {
+    private void berechneGewicht(ButtonBase pressed) {
         double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
-        Double have = 0.0;
         System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
+        Double have = 0.0;
+        System.out.println(have);
 
         have = Double.valueOf((scanWaage.getData()));
 
@@ -226,11 +221,11 @@ public class FXMLDocumentController implements Initializable {
             txtGewicht.setStyle("-fx-border-color: green");
             btnAbsenden.setDisable(false);
             double diff = Math.ceil(have / alleWaren.get(this.pressed));
-            txtMeldung.setText(String.format("Es sind %.0f %s %s vorhanden", diff, this.pressedArt.getText(), this.pressed.getText()));
+            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText()));
         } else {
             txtGewicht.setStyle("-fx-border-color: red");
             double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
-            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressedArt.getText(), this.pressed.getText());
+            String text = String.format("Es fehlen %.0f %s", diff, this.pressed.getText());
             txtMeldung.setText(text);
         }
     }
