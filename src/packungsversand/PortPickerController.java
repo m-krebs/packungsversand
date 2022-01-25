@@ -26,6 +26,7 @@ public class PortPickerController extends Stage implements Initializable {
     private Button btnAbbr;
 
     private ObservableList<SerialPort> mdlPorts;
+    private Alert alert = new Alert(AlertType.NONE);
 
     @FXML
     public void onBtnClick(ActionEvent actionEvent) {
@@ -35,7 +36,9 @@ public class PortPickerController extends Stage implements Initializable {
         } else if (temp == btnOK) {
             SerialPort port = (SerialPort) chbPort.getSelectionModel().getSelectedItem();
             if (scanWaage.testConnection(port)) {
-                new Alert(AlertType.INFORMATION, "Verbindung erfolgreich").showAndWait();
+                alert.setContentText("Verbindung erfolgreich");
+                alert.setAlertType(AlertType.INFORMATION);
+                alert.showAndWait();
                 try {
                     new MainWindow();
                 } catch (IOException e) {
@@ -43,7 +46,9 @@ public class PortPickerController extends Stage implements Initializable {
                 }
                 closeWindow(btnOK);
             } else {
-                new Alert(AlertType.ERROR, "Verbindung fehlgeschlagen").show();
+                alert.setContentText("Verbindung fehlgeschlagen");
+                alert.setAlertType(AlertType.ERROR);
+                alert.show();
             }
         }
     }
@@ -67,6 +72,7 @@ public class PortPickerController extends Stage implements Initializable {
             }
         });
         chbPort.getSelectionModel().selectFirst();
+        alert.setHeaderText(null);
     }
 
     public static void closeWindow(Button btn) {
