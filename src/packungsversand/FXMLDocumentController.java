@@ -134,6 +134,9 @@ public class FXMLDocumentController implements Initializable {
         alleWaren = new HashMap<>();
         alleWaren = new HashMap<>();
         addButtons();
+        DialogPane dialog = alert.getDialogPane();
+        alert.setHeaderText(null);
+        dialog.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
     }
 
     //region FXML Methoden
@@ -167,6 +170,12 @@ public class FXMLDocumentController implements Initializable {
             berechneGewicht(pressed);
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
+            alert.showAndWait();
+        } catch (RuntimeException re) {
+            alert.setContentText("Bitte die Waage anschließen");
+            alert.showAndWait();
+        } catch (Exception e) {
+            alert.setContentText("Andere Exception");
             alert.showAndWait();
         }
 
@@ -215,17 +224,18 @@ public class FXMLDocumentController implements Initializable {
 
         have = Double.valueOf((scanWaage.getData()));
 
+
         System.out.println(have);
         txtGewicht.setText(String.valueOf(have));
         if (have >= need) {
             txtGewicht.setStyle("-fx-border-color: green");
             btnAbsenden.setDisable(false);
             double diff = Math.ceil(have / alleWaren.get(this.pressed));
-            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText()));
+            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressedArt.getText()));
         } else {
             txtGewicht.setStyle("-fx-border-color: red");
             double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
-            String text = String.format("Es fehlen %.0f %s", diff, this.pressed.getText());
+            String text = String.format("Es fehlen %.0f %s", diff, this.pressedArt.getText());
             txtMeldung.setText(text);
         }
     }

@@ -79,3 +79,7 @@
     -fx-border-width: 0;
     -fx-border-color: yellow;
 }
+
+.dialog-pane .content {
+    -fx-font-size: 16;
+}
