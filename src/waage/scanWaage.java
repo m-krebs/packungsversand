@@ -14,6 +14,8 @@ public class scanWaage {
         for (SerialPort port : ports) {
             System.out.println("Port: " + port.getDescriptivePortName());
         }
+        String s = getData();
+        System.out.println(s);
     }
 
     public static void getCOMP(String cport) {

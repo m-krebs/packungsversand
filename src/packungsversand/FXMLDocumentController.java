@@ -19,14 +19,13 @@ import java.util.ResourceBundle;
 
 public class FXMLDocumentController implements Initializable {
     //region Variablen
-    HashMap<Button, Double> alleWaren;
+    private HashMap<Button, Double> alleWaren;
 
-    ArrayList<Button> waren = new ArrayList<>();
-    ArrayList<Button> arten = new ArrayList<>();
+    private ArrayList<Button> waren = new ArrayList<>();
+    private ArrayList<Button> arten = new ArrayList<>();
 
-    Alert alert = new Alert(Alert.AlertType.ERROR);
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
 
-    private String art;
     private Button pressed;
     private Button pressedArt;
     //endregion
@@ -132,7 +131,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
-        alleWaren = new HashMap<>();
         addButtons();
         DialogPane dialog = alert.getDialogPane();
         alert.setHeaderText(null);
@@ -167,7 +165,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            berechneGewicht(pressed);
+            berechneGewicht();
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
             alert.showAndWait();
@@ -191,7 +189,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void getSchraube(ActionEvent event) {
+    private void getWare(ActionEvent event) {
         int index = waren.indexOf((Button) event.getSource());
         pressed = waren.get(index);
     }
@@ -209,21 +207,19 @@ public class FXMLDocumentController implements Initializable {
         for (Node btn : hbMutterButtons.getChildren()) {
             waren.add((Button) btn);
         }
-
         for (Node btn : vbArten.getChildren()) {
             arten.add((Button) btn);
         }
         readCSV();
     }
 
-    private void berechneGewicht(ButtonBase pressed) {
+    private void berechneGewicht() {
         double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
-        System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
         Double have = 0.0;
+        System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
         System.out.println(have);
 
         have = Double.valueOf((scanWaage.getData()));
-
 
         System.out.println(have);
         txtGewicht.setText(String.valueOf(have));
