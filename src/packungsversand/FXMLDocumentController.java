@@ -222,11 +222,11 @@ public class FXMLDocumentController implements Initializable {
             txtGewicht.setStyle("-fx-border-color: green");
             btnAbsenden.setDisable(false);
             double diff = Math.ceil(have / alleWaren.get(this.pressed));
-            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText()));
+            txtMeldung.setText(String.format("Es sind %.0f %s %s vorhanden", diff, this.pressed.getText(), this.pressed.getText()));
         } else {
             txtGewicht.setStyle("-fx-border-color: red");
             double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
-            String text = String.format("Es fehlen %.0f %s", diff, this.pressed.getText());
+            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressed.getText(), this.pressed.getText());
             txtMeldung.setText(text);
         }
     }
