@@ -181,8 +181,8 @@ public class FXMLDocumentController implements Initializable {
         for (Button btn : waren) {
             btn.setDisable(false);
         }
-        txtGewicht.setText("");
-        txtAnzahl.setText("");
+        txtGewicht.setText("0");
+        txtAnzahl.setText("0");
     }
 
     @FXML

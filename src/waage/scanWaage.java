@@ -62,7 +62,7 @@ public class scanWaage {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return "Keine Daten";
     }
@@ -74,15 +74,19 @@ public class scanWaage {
         sp.openPort();
     }
 
-    public static boolean testConnection(SerialPort port){
-        sp = port;
-        String status = getData();
-        System.out.println(status);
-        if (status.equals("Keine Daten")){
+    public static boolean testConnection(SerialPort port) {
+        try {
+            sp = port;
+            sp.openPort();
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        if (sp.bytesAvailable() > 0) {
+            return true;
+        } else {
             sp.closePort();
             return false;
-        } else {
-            return true;
         }
     }
 }
