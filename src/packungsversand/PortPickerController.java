@@ -5,44 +5,48 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import waage.scanWaage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.Alert.AlertType;
 
 public class PortPickerController extends Stage implements Initializable {
     @FXML
-    private Label txtInfo;
-    @FXML
     private Button btnTest;
     @FXML
     private ChoiceBox chbPort;
     @FXML
-    private Button btnFertig;
+    private Button btnOK;
     @FXML
     private Button btnAbbr;
 
-    private ObservableList<String> mdlPorts;
+    private ObservableList<SerialPort> mdlPorts;
 
     @FXML
     public void onBtnClick(ActionEvent actionEvent) {
         Button temp = (Button) actionEvent.getSource();
-        if (temp == btnAbbr){
-            ((Stage)btnAbbr.getScene().getWindow()).close();
-        } else if (temp == btnFertig) {
-            System.out.println("Fertig");
-        } else {
-
-            System.out.println(chbPort.getValue());
-            System.out.println("Test Connection");
+        if (temp == btnAbbr) {
+            closeWindow(btnAbbr);
+        } else if (temp == btnOK) {
+            SerialPort port = (SerialPort) chbPort.getSelectionModel().getSelectedItem();
+            if (scanWaage.testConnection(port)) {
+                new Alert(AlertType.INFORMATION, "Verbindung erfolgreich").showAndWait();
+                try {
+                    new MainWindow();
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                closeWindow(btnTest);
+            } else {
+                new Alert(AlertType.ERROR, "Verbindung fehlgeschlagen").show();
+            }
         }
     }
 
@@ -51,9 +55,23 @@ public class PortPickerController extends Stage implements Initializable {
         mdlPorts = FXCollections.observableArrayList();
         chbPort.setItems(mdlPorts);
         SerialPort[] ports = SerialPort.getCommPorts();
-        for (SerialPort port : ports) {
-            mdlPorts.add(port.getDescriptivePortName());
-        }
+        mdlPorts.addAll(ports);
+        chbPort.setConverter(new StringConverter() {
+            @Override
+            public String toString(Object object) {
+                SerialPort sp = (SerialPort) object;
+                return sp.getDescriptivePortName();
+            }
+
+            @Override
+            public Object fromString(String string) {
+                return null;
+            }
+        });
         chbPort.getSelectionModel().selectFirst();
+    }
+
+    public static void closeWindow(Button btn) {
+        ((Stage) btn.getScene().getWindow()).close();
     }
 }

@@ -21,8 +21,8 @@ public class Packungsversand extends Application {
         stage.setScene(scene);
         stage.show();*/
 
-        new MainWindow();
-//        new PortPicker(stage);
+//        new MainWindow();
+        new PortPicker(stage);
     }
 
     

@@ -13,14 +13,17 @@ public class scanWaage {
         for (SerialPort port : ports) {
             System.out.println("Port: " + port.getDescriptivePortName());
         }
+//        getCOMP("COM3");
     }
 
-    public static void getCOMP(String cport) {
+/*    public static void getCOMP(String cport) {
         SerialPort[] ports = SerialPort.getCommPorts();
         SerialPort comPort = null;
         for (SerialPort p : ports) {
             System.out.println("Port: " + p.getPortDescription());
-
+            System.out.println("SystemPortName: " + p.getSystemPortName());
+            System.out.println("GetPortDescription: " + p.getPortDescription());
+            System.out.println("DescriptivePortName" + p.getDescriptivePortName());
             if (p.getDescriptivePortName().contains(cport)) {
                 comPort = p;
 
@@ -33,7 +36,7 @@ public class scanWaage {
         } else {
             sp = comPort;
         }
-    }
+    }*/
 
     public static String getData() {
         try {
@@ -61,8 +64,20 @@ public class scanWaage {
     }
 
 
-    public static void openPort() {
-        getCOMP("COM3");
+    public static void openPort(SerialPort port) {
+//        getCOMP("COM3");
+        sp = port;
         sp.openPort();
+    }
+
+    public static boolean testConnection(SerialPort port){
+        port.openPort();
+        String status = getData();
+        if (status.equals("Keine Daten")){
+            port.closePort();
+            return false;
+        } else {
+            return true;
+        }
     }
 }
