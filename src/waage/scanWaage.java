@@ -13,6 +13,10 @@ public class scanWaage {
         for (SerialPort port : ports) {
             System.out.println("Port: " + port.getDescriptivePortName());
         }
+        sp = ports[1];
+
+        System.out.println(getData());
+
 //        getCOMP("COM3");
     }
 
@@ -71,10 +75,11 @@ public class scanWaage {
     }
 
     public static boolean testConnection(SerialPort port){
-        port.openPort();
+        sp = port;
         String status = getData();
+        System.out.println(status);
         if (status.equals("Keine Daten")){
-            port.closePort();
+            sp.closePort();
             return false;
         } else {
             return true;

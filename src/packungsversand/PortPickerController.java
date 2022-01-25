@@ -19,8 +19,6 @@ import static javafx.scene.control.Alert.AlertType;
 
 public class PortPickerController extends Stage implements Initializable {
     @FXML
-    private Button btnTest;
-    @FXML
     private ChoiceBox chbPort;
     @FXML
     private Button btnOK;
@@ -43,7 +41,7 @@ public class PortPickerController extends Stage implements Initializable {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                closeWindow(btnTest);
+                closeWindow(btnOK);
             } else {
                 new Alert(AlertType.ERROR, "Verbindung fehlgeschlagen").show();
             }

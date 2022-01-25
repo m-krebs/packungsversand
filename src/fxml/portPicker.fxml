@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="227.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortPickerController">
+<AnchorPane prefHeight="227.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="packungsversand.PortPickerController">
     <children>
         <Button fx:id="btnOK" layoutX="193.0" layoutY="125.0" mnemonicParsing="false" onAction="#onBtnClick" prefHeight="25.0" prefWidth="41.0" text="OK" />
         <ChoiceBox fx:id="chbPort" layoutX="64.0" layoutY="82.0" prefHeight="25.0" prefWidth="255.0" />
@@ -16,7 +16,6 @@
             </font>
         </Label>
       <Button fx:id="btnAbbr" layoutX="245.0" layoutY="125.0" mnemonicParsing="false" onAction="#onBtnClick" text="Abbrechen" />
-      <Button fx:id="btnTest" layoutX="64.0" layoutY="125.0" mnemonicParsing="false" onAction="#onBtnClick" prefHeight="25.0" prefWidth="115.0" text="Verbindung testen" />
 
     </children>
 </AnchorPane>
