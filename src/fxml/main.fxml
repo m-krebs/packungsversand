@@ -96,7 +96,7 @@
           </HBox>
       </top>
       <center>
-          <VBox fx:id="vbArt" alignment="TOP_CENTER" prefHeight="319.0" prefWidth="320.0" spacing="15.0" BorderPane.alignment="CENTER">
+          <VBox fx:id="vbArt" alignment="TOP_CENTER" spacing="15.0" BorderPane.alignment="CENTER">
               <children>
             <StackPane fx:id="stkPane">
                <children>
@@ -104,12 +104,12 @@
                      <children>
                               <HBox fx:id="hbSchButtons" prefHeight="31.0" prefWidth="603.0">
                                   <children>
-                                      <Button fx:id="btnSch3x20" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x20" textFill="WHITE" HBox.hgrow="ALWAYS" />
-                                      <Button fx:id="btnSch3x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
-                                      <Button fx:id="btnSch4x30" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
-                                      <Button fx:id="btnSch4x50" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
-                                      <Button fx:id="btnSch5x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
-                                      <Button fx:id="btnSch5x60" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch3x20" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="3x20" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch3x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="3x40" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch4x30" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="4x30" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch4x50" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="4x50" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch5x40" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="5x40" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="btnSch5x60" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="5x60" HBox.hgrow="ALWAYS" />
                                   </children>
                               </HBox>
                      </children>
@@ -118,12 +118,12 @@
                      <children>
                         <HBox fx:id="hbNaegelButtons" prefHeight="31.0" prefWidth="603.0">
                            <children>
-                              <Button fx:id="btnNaeKerb" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Kerb" textFill="WHITE" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnNaeStift" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Stift" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnNaeDoppelkopf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Doppelkopf" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnNaeHaken" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Haken" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnNaeHuf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Huf" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnNaeAnker" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Anker" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeKerb" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Kerb" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeStift" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Stift" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeDoppelkopf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Doppelkopf" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeHaken" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Haken" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeHuf" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Huf" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnNaeAnker" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Anker" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
@@ -132,12 +132,12 @@
                      <children>
                         <HBox fx:id="hbMutterButtons" prefHeight="31.0" prefWidth="603.0">
                            <children>
-                              <Button fx:id="btnMutSechskant" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Sechskant" textFill="WHITE" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnMutVierkant" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Vierkant" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnMutFluegel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Flügel" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnMutSterngriff" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Sterngriff" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnMutKreuzloch" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Kreuzloch" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="btnMutNut" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getSchraube" prefHeight="30.0" styleClass="buttonSize" text="Nut" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutSechskant" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Sechskant" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutVierkant" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Vierkant" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutFluegel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Flügel" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutSterngriff" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Sterngriff" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutKreuzloch" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Kreuzloch" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnMutNut" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getWare" prefHeight="30.0" styleClass="buttonSize" text="Nut" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
@@ -182,7 +182,7 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <RadioButton fx:id="rb3x20" mnemonicParsing="false" onAction="#getSchraube" selected="true" text="3x20">
+                                    <RadioButton fx:id="rb3x20" mnemonicParsing="false" onAction="#getWare" selected="true" text="3x20">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -190,12 +190,12 @@
                                           <ToggleGroup fx:id="grpSchrauben" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="rb3x40" mnemonicParsing="false" onAction="#getSchraube" text="3x40" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb3x40" mnemonicParsing="false" onAction="#getWare" text="3x40" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="rb4x30" mnemonicParsing="false" onAction="#getSchraube" text="4x30" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb4x30" mnemonicParsing="false" onAction="#getWare" text="4x30" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -204,17 +204,17 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <RadioButton fx:id="rb4x50" mnemonicParsing="false" onAction="#getSchraube" text="4x50" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb4x50" mnemonicParsing="false" onAction="#getWare" text="4x50" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="rb5x40" mnemonicParsing="false" onAction="#getSchraube" text="5x40" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb5x40" mnemonicParsing="false" onAction="#getWare" text="5x40" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="rb5x60" mnemonicParsing="false" onAction="#getSchraube" text="5x60" toggleGroup="$grpSchrauben">
+                                    <RadioButton fx:id="rb5x60" mnemonicParsing="false" onAction="#getWare" text="5x60" toggleGroup="$grpSchrauben">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>

@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import waage.scanWaage;
 
 import java.io.FileReader;
@@ -128,12 +126,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btnMutKreuzloch;
     @FXML
     private Button btnMutNut;
-
     //endregion
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        scanWaage.openPort();
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
         alleWaren = new HashMap<>();
@@ -181,12 +177,12 @@ public class FXMLDocumentController implements Initializable {
         for (Button btn : waren) {
             btn.setDisable(false);
         }
-        txtGewicht.setText("0");
-        txtAnzahl.setText("0");
+        txtGewicht.setText("");
+        txtAnzahl.setText("");
     }
 
     @FXML
-    private void getSchraube(ActionEvent event) throws IOException {
+    private void getWare(ActionEvent event) {
         int index = waren.indexOf((Button) event.getSource());
         pressed = waren.get(index);
     }
