@@ -13,14 +13,21 @@ public class scanWaage {
         for (SerialPort port : ports) {
             System.out.println("Port: " + port.getDescriptivePortName());
         }
+        sp = ports[1];
+
+        System.out.println(getData());
+
+//        getCOMP("COM3");
     }
 
-    public static void getCOMP(String cport) {
+/*    public static void getCOMP(String cport) {
         SerialPort[] ports = SerialPort.getCommPorts();
         SerialPort comPort = null;
         for (SerialPort p : ports) {
             System.out.println("Port: " + p.getPortDescription());
-
+            System.out.println("SystemPortName: " + p.getSystemPortName());
+            System.out.println("GetPortDescription: " + p.getPortDescription());
+            System.out.println("DescriptivePortName" + p.getDescriptivePortName());
             if (p.getDescriptivePortName().contains(cport)) {
                 comPort = p;
 
@@ -33,7 +40,7 @@ public class scanWaage {
         } else {
             sp = comPort;
         }
-    }
+    }*/
 
     public static String getData() {
         try {
@@ -55,14 +62,31 @@ public class scanWaage {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return "Keine Daten";
     }
 
 
-    public static void openPort() {
-        getCOMP("COM4");
+    public static void openPort(SerialPort port) {
+//        getCOMP("COM3");
+        sp = port;
         sp.openPort();
+    }
+
+    public static boolean testConnection(SerialPort port) {
+        try {
+            sp = port;
+            sp.openPort();
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        if (sp.bytesAvailable() > 0) {
+            return true;
+        } else {
+            sp.closePort();
+            return false;
+        }
     }
 }
