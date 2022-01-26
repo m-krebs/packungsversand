@@ -25,8 +25,31 @@ public class PortPickerController extends Stage implements Initializable {
     @FXML
     private Button btnAbbr;
 
-    private ObservableList<SerialPort> mdlPorts;
+    private static ObservableList<SerialPort> mdlPorts = FXCollections.observableArrayList();
     private Alert alert = new Alert(AlertType.NONE);
+    @FXML
+    private Button btnLaden;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        mdlPorts = FXCollections.observableArrayList();
+        chbPort.setItems(mdlPorts);
+        setPorts();
+        chbPort.setConverter(new StringConverter<Object>() {
+            @Override
+            public String toString(Object object) {
+                SerialPort sp = (SerialPort) object;
+                return sp.getDescriptivePortName();
+            }
+
+            @Override
+            public Object fromString(String string) {
+                return null;
+            }
+        });
+        chbPort.getSelectionModel().selectFirst();
+        alert.setHeaderText(null);
+    }
 
     @FXML
     public void onBtnClick(ActionEvent actionEvent) {
@@ -55,29 +78,20 @@ public class PortPickerController extends Stage implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        mdlPorts = FXCollections.observableArrayList();
-        chbPort.setItems(mdlPorts);
+    @FXML
+    public void onReload() {
+
+    }
+
+    public static void setPorts(){
         SerialPort[] ports = SerialPort.getCommPorts();
         mdlPorts.addAll(ports);
-        chbPort.setConverter(new StringConverter() {
-            @Override
-            public String toString(Object object) {
-                SerialPort sp = (SerialPort) object;
-                return sp.getDescriptivePortName();
-            }
-
-            @Override
-            public Object fromString(String string) {
-                return null;
-            }
-        });
-        chbPort.getSelectionModel().selectFirst();
-        alert.setHeaderText(null);
     }
+
 
     public static void closeWindow(Button btn) {
         ((Stage) btn.getScene().getWindow()).close();
     }
+
+
 }
