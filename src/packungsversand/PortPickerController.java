@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import waage.scanWaage;
@@ -18,17 +20,27 @@ import java.util.ResourceBundle;
 import static javafx.scene.control.Alert.AlertType;
 
 public class PortPickerController extends Stage implements Initializable {
+    private static ObservableList<SerialPort> mdlPorts = FXCollections.observableArrayList();
     @FXML
     private ChoiceBox chbPort;
     @FXML
     private Button btnOK;
     @FXML
     private Button btnAbbr;
-
-    private static ObservableList<SerialPort> mdlPorts = FXCollections.observableArrayList();
     private Alert alert = new Alert(AlertType.NONE);
     @FXML
     private Button btnLaden;
+
+    public static void closeWindow(Button btn) {
+        ((Stage) btn.getScene().getWindow()).close();
+    }
+
+    public void setPorts() {
+        SerialPort[] ports = SerialPort.getCommPorts();
+        mdlPorts.clear();
+        mdlPorts.addAll(ports);
+        chbPort.getSelectionModel().selectFirst();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +70,7 @@ public class PortPickerController extends Stage implements Initializable {
             closeWindow(btnAbbr);
         } else if (temp == btnOK) {
             SerialPort port = (SerialPort) chbPort.getSelectionModel().getSelectedItem();
-            if (scanWaage.testConnection(port)) {
+            if (!scanWaage.testConnection(port)) {
                 alert.setTitle("Erfolg");
                 alert.setContentText("Verbindung erfolgreich");
                 alert.setAlertType(AlertType.INFORMATION);
@@ -80,17 +92,7 @@ public class PortPickerController extends Stage implements Initializable {
 
     @FXML
     public void onReload() {
-
-    }
-
-    public static void setPorts(){
-        SerialPort[] ports = SerialPort.getCommPorts();
-        mdlPorts.addAll(ports);
-    }
-
-
-    public static void closeWindow(Button btn) {
-        ((Stage) btn.getScene().getWindow()).close();
+        setPorts();
     }
 
 

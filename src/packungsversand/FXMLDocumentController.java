@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.StageStyle;
 import waage.scanWaage;
 
 import java.io.FileReader;
@@ -135,6 +136,7 @@ public class FXMLDocumentController implements Initializable {
         alleWaren = new HashMap<>();
         alleWaren = new HashMap<>();
         addButtons();
+        alert.initStyle(StageStyle.UNDECORATED);
     }
 
     //region FXML Methoden
@@ -165,9 +167,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     public void onWiegen(ActionEvent event) {
         try {
-            berechneGewicht(pressed);
+            berechneGewicht();
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
+            alert.showAndWait();
+        } catch (RuntimeException re) {
+            alert.setContentText("Bitte die Waage anschließen");
+            alert.showAndWait();
+        } catch (Exception e) {
+            alert.setContentText("Ein Fehler ist aufgetreten");
+
             alert.showAndWait();
         }
 
@@ -208,7 +217,7 @@ public class FXMLDocumentController implements Initializable {
         readCSV();
     }
 
-    private void berechneGewicht(ButtonBase pressed) {
+    private void berechneGewicht() {
         double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
         System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
         Double have = 0.0;
@@ -222,11 +231,11 @@ public class FXMLDocumentController implements Initializable {
             txtGewicht.setStyle("-fx-border-color: green");
             btnAbsenden.setDisable(false);
             double diff = Math.ceil(have / alleWaren.get(this.pressed));
-            txtMeldung.setText(String.format("Es sind %.0f %s vorhanden", diff, this.pressed.getText(), this.pressed.getText()));
+            txtMeldung.setText(String.format("Es sind %.0f %s %s vorhanden", diff, this.pressed.getText(), this.pressedArt.getText()));
         } else {
             txtGewicht.setStyle("-fx-border-color: red");
             double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
-            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressed.getText(), this.pressed.getText());
+            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressed.getText(), this.pressedArt.getText());
             txtMeldung.setText(text);
         }
     }

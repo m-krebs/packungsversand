@@ -8,40 +8,6 @@ public class scanWaage {
 
     public static SerialPort sp;
 
-    public static void main(String[] args) {
-        SerialPort[] ports = SerialPort.getCommPorts();
-        for (SerialPort port : ports) {
-            System.out.println("Port: " + port.getDescriptivePortName());
-        }
-        sp = ports[1];
-
-        System.out.println(getData());
-
-//        getCOMP("COM3");
-    }
-
-/*    public static void getCOMP(String cport) {
-        SerialPort[] ports = SerialPort.getCommPorts();
-        SerialPort comPort = null;
-        for (SerialPort p : ports) {
-            System.out.println("Port: " + p.getPortDescription());
-            System.out.println("SystemPortName: " + p.getSystemPortName());
-            System.out.println("GetPortDescription: " + p.getPortDescription());
-            System.out.println("DescriptivePortName" + p.getDescriptivePortName());
-            if (p.getDescriptivePortName().contains(cport)) {
-                comPort = p;
-
-                System.out.println("?: " + p.getSystemPortName());
-                System.out.println("Gefundener Port: " + comPort);
-            }
-        }
-        if (comPort == null) {
-            System.out.println("Could not find COMPort");
-        } else {
-            sp = comPort;
-        }
-    }*/
-
     public static String getData() {
         try {
             while (true) {
@@ -62,15 +28,8 @@ public class scanWaage {
 
             }
         } catch (Exception e) {
-//            e.printStackTrace();
         }
-        return "Keine Daten";
-    }
-
-
-    public static void openPort(SerialPort port) {
-        sp = port;
-        sp.openPort();
+        return "0";
     }
 
     public static boolean testConnection(SerialPort port) {
