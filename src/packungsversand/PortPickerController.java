@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 import waage.scanWaage;
 
@@ -70,7 +72,7 @@ public class PortPickerController extends Stage implements Initializable {
             closeWindow(btnAbbr);
         } else if (temp == btnOK) {
             SerialPort port = (SerialPort) chbPort.getSelectionModel().getSelectedItem();
-            if (!scanWaage.testConnection(port)) {
+            if (scanWaage.testConnection(port)) {
                 alert.setTitle("Erfolg");
                 alert.setContentText("Verbindung erfolgreich");
                 alert.setAlertType(AlertType.INFORMATION);

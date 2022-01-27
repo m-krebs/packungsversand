@@ -162,6 +162,9 @@
                           </TextField>
                           <Button fx:id="btnWiegen" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onWiegen" styleClass="buttonInside" text="Wiegen" />
                       </children>
+               <VBox.margin>
+                  <Insets left="74.0" />
+               </VBox.margin>
                   </HBox>
                   <Label fx:id="txtMeldung">
                       <font>

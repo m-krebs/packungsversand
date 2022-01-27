@@ -134,9 +134,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
-        alleWaren = new HashMap<>();
         addButtons();
-        alert.initStyle(StageStyle.UNDECORATED);
     }
 
     //region FXML Methoden
@@ -176,7 +174,6 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         } catch (Exception e) {
             alert.setContentText("Ein Fehler ist aufgetreten");
-
             alert.showAndWait();
         }
 
