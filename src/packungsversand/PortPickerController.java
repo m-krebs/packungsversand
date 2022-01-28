@@ -46,7 +46,6 @@ public class PortPickerController extends Stage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        mdlPorts = FXCollections.observableArrayList();
         chbPort.setItems(mdlPorts);
         setPorts();
         chbPort.setConverter(new StringConverter<Object>() {
@@ -55,7 +54,6 @@ public class PortPickerController extends Stage implements Initializable {
                 SerialPort sp = (SerialPort) object;
                 return sp.getDescriptivePortName();
             }
-
             @Override
             public Object fromString(String string) {
                 return null;

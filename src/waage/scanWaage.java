@@ -11,27 +11,31 @@ public class scanWaage {
     public static String getData() {
         try {
             while (true) {
+                // Wenn keine Bytes angekommen sind warte 55 ms
                 while (sp.bytesAvailable() == 0) {
                     Thread.sleep(55);
                 }
 
-                System.out.println("Verfügbare Bytes: " + sp.bytesAvailable());
                 byte[] readBuffer = new byte[sp.bytesAvailable()];
                 int numRead = sp.readBytes(readBuffer, readBuffer.length);
+                // Wenn genug Bytes da sind (19 liefert fast immer genug datensätze)
                 if (numRead >= 19) {
                     String strReadBArr = new String(readBuffer, StandardCharsets.UTF_8);
+                    // Alles auser die Zahl ansich wird durch "" ersetzt
                     strReadBArr = strReadBArr.replaceAll("\r", "").replaceAll(" ", "").replaceAll("W:", "").replaceAll("\n", "").replaceAll("\\+", "");
+                    // nach dem gramm zeichen beginnt ein neuer wert
                     String[] gwStrArr = strReadBArr.split("g");
-                    System.out.println("ReadyString: " + gwStrArr[gwStrArr.length - 1]);
                     return gwStrArr[gwStrArr.length - 1];
                 }
 
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
+
         }
         return "0";
     }
 
+    // Test ob die Waage daten sendet
     public static boolean testConnection(SerialPort port) {
         try {
             sp = port;

@@ -156,7 +156,7 @@ public class FXMLDocumentController implements Initializable {
     private void berechneGewicht() {
         // das Gewicht der Art * Anzahl die wir benötigen
         double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
-        Double have = 0.0;
+        Double have;
 
         // Parsed den wert der gewogen wurde zu double
         have = Double.valueOf((scanWaage.getData()));
