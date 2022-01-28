@@ -5,9 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.stage.StageStyle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import waage.scanWaage;
 
 import java.io.FileReader;
@@ -23,13 +27,12 @@ public class FXMLDocumentController implements Initializable {
     HashMap<Button, Double> alleWaren;
 
     ArrayList<Button> waren = new ArrayList<>();
-    ArrayList<Button> arten = new ArrayList<>();
+    ArrayList<Button> kategorien = new ArrayList<>();
 
     Alert alert = new Alert(Alert.AlertType.ERROR);
 
-    private String art;
     private Button pressed;
-    private Button pressedArt;
+    private Button pressedKategorie;
 
     //endregion
 
@@ -37,59 +40,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private VBox vbArten;
     @FXML
-    private HBox hbTitle;
-    @FXML
     private Button btnSchrauben;
     @FXML
     private Button btnMuttern;
-    @FXML
-    private Button btnNaegel;
     @FXML
     private TextField txtAnzahl;
     @FXML
     private TextField txtGewicht;
     @FXML
-    private Button btnWiegen;
-    @FXML
     private Button btnAbsenden;
-    @FXML
-    private Button btnAbbrechen;
     @FXML
     private Label txtMeldung;
     @FXML
-    private RadioButton rb3x20;
-    @FXML
-    private ToggleGroup grpSchrauben;
-    @FXML
-    private RadioButton rb3x40;
-    @FXML
-    private RadioButton rb4x30;
-    @FXML
-    private RadioButton rb4x50;
-    @FXML
-    private RadioButton rb5x40;
-    @FXML
-    private RadioButton rb5x60;
-    @FXML
-    private Button btnSch3x20;
-    @FXML
-    private Button btnSch3x40;
-    @FXML
-    private Button btnSch4x30;
-    @FXML
-    private Button btnSch4x50;
-    @FXML
-    private Button btnSch5x40;
-    @FXML
-    private Button btnSch5x60;
-    @FXML
     private HBox hbSchButtons;
-    @FXML
-    private VBox vbArt;
-    @FXML
-    private BorderPane bpMain;
-    @FXML
-    private StackPane stkPane;
     @FXML
     private Pane paneSchraube;
     @FXML
@@ -97,37 +60,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private HBox hbMutterButtons;
     @FXML
-    private ToggleGroup grpSchrauben1;
-    @FXML
-    private ToggleGroup grpSchrauben11;
-    @FXML
     private Pane paneNaegel;
     @FXML
-    private Button btnNaeKerb;
-    @FXML
-    private Button btnNaeStift;
-    @FXML
-    private Button btnNaeDoppelkopf;
-    @FXML
-    private Button btnNaeHaken;
-    @FXML
-    private Button btnNaeHuf;
-    @FXML
-    private Button btnNaeAnker;
-    @FXML
     private HBox hbNaegelButtons;
-    @FXML
-    private Button btnMutSechskant;
-    @FXML
-    private Button btnMutVierkant;
-    @FXML
-    private Button btnMutFluegel;
-    @FXML
-    private Button btnMutSterngriff;
-    @FXML
-    private Button btnMutKreuzloch;
-    @FXML
-    private Button btnMutNut;
     //endregion
 
     @Override
@@ -135,10 +70,12 @@ public class FXMLDocumentController implements Initializable {
         btnAbsenden.setDisable(true);
         alleWaren = new HashMap<>();
         addButtons();
+        btnSchrauben.fire();
     }
 
-    //region FXML Methoden
+    //region FXML-Methoden
 
+    // Schiebt das Pane der Muttern, Naegel oder der Schrauben nach vorne und macht die jeweils anderen unischtbar
     @FXML
     private void getArt(ActionEvent event) {
         if (event.getSource().equals(btnSchrauben)) {
@@ -157,9 +94,9 @@ public class FXMLDocumentController implements Initializable {
             paneMutter.setVisible(false);
             paneSchraube.setVisible(false);
         }
-
-        int index = arten.indexOf((Button) event.getSource());
-        pressedArt = arten.get(index);
+        // Speichert den Button der gedrückt wurde
+        int index = kategorien.indexOf((Button) event.getSource());
+        pressedKategorie = kategorien.get(index);
     }
 
     @FXML
@@ -188,6 +125,7 @@ public class FXMLDocumentController implements Initializable {
         txtAnzahl.setText("");
     }
 
+    // Der Button, der Art, die gedrückt wurde wird returned
     @FXML
     private void getWare(ActionEvent event) {
         int index = waren.indexOf((Button) event.getSource());
@@ -197,6 +135,7 @@ public class FXMLDocumentController implements Initializable {
     //endregion
 
     //region Util
+    // Fügt alle buttons zu den jeweiligen ArrayList
     private void addButtons() {
         for (Node btn : hbSchButtons.getChildren()) {
             waren.add((Button) btn);
@@ -209,17 +148,17 @@ public class FXMLDocumentController implements Initializable {
         }
 
         for (Node btn : vbArten.getChildren()) {
-            arten.add((Button) btn);
+            kategorien.add((Button) btn);
         }
         readCSV();
     }
 
     private void berechneGewicht() {
+        // das Gewicht der Art * Anzahl die wir benötigen
         double need = alleWaren.get(this.pressed) * Double.parseDouble(txtAnzahl.getText());
-        System.out.println(alleWaren.get(this.pressed) + " * " + txtAnzahl.getText() + " = " + need);
         Double have = 0.0;
-        System.out.println(have);
 
+        // Parsed den wert der gewogen wurde zu double
         have = Double.valueOf((scanWaage.getData()));
 
         System.out.println(have);
@@ -227,12 +166,13 @@ public class FXMLDocumentController implements Initializable {
         if (have >= need) {
             txtGewicht.setStyle("-fx-border-color: green");
             btnAbsenden.setDisable(false);
+            // Berechnet die Anzahl die wir haben an hand des Gewichts
             double diff = Math.ceil(have / alleWaren.get(this.pressed));
-            txtMeldung.setText(String.format("Es sind %.0f %s %s vorhanden", diff, this.pressed.getText(), this.pressedArt.getText()));
+            txtMeldung.setText(String.format("Es sind %.0f %s %s vorhanden", diff, this.pressed.getText(), this.pressedKategorie.getText()));
         } else {
             txtGewicht.setStyle("-fx-border-color: red");
             double diff = Math.ceil((need - have) / alleWaren.get(this.pressed));
-            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressed.getText(), this.pressedArt.getText());
+            String text = String.format("Es fehlen %.0f %s %s", diff, this.pressed.getText(), this.pressedKategorie.getText());
             txtMeldung.setText(text);
         }
     }
@@ -242,6 +182,7 @@ public class FXMLDocumentController implements Initializable {
             CSVParser csvParser = new CSVParser(new FileReader("src/packungsversand/waren.csv"));
             csvParser.changeDelimiter(';');
             String[][] values = csvParser.getAllValues();
+            // Die Hashmap wird mit den Button und den jeweiligen wert in der CSV gefüllt
             for (int i = 0; i < values.length; i++) {
                 alleWaren.put(waren.get(i), Double.valueOf(values[i][1]));
             }
