@@ -106,6 +106,9 @@ public class FXMLDocumentController implements Initializable {
         } catch (NullPointerException np) {
             alert.setContentText("Bitte eine Art auswählen");
             alert.showAndWait();
+        } catch (NumberFormatException nfe) {
+            alert.setContentText("Geben Sie die Anzahl an die Sie brauchen");
+            alert.showAndWait();
         } catch (RuntimeException re) {
             alert.setContentText("Bitte die Waage anschließen");
             alert.showAndWait();
