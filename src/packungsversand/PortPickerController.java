@@ -33,10 +33,13 @@ public class PortPickerController extends Stage implements Initializable {
     @FXML
     private Button btnLaden;
 
+
+    // Methode zum schließen des Fensters
     public static void closeWindow(Button btn) {
         ((Stage) btn.getScene().getWindow()).close();
     }
 
+    // Füllen der Choicebox mit Serial Ports
     public void setPorts() {
         SerialPort[] ports = SerialPort.getCommPorts();
         mdlPorts.clear();
@@ -59,7 +62,6 @@ public class PortPickerController extends Stage implements Initializable {
                 return null;
             }
         });
-        chbPort.getSelectionModel().selectFirst();
         alert.setHeaderText(null);
     }
 
