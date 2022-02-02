@@ -100,7 +100,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void onWiegen(ActionEvent event) {
+    public void onWiegen() {
         try {
             berechneGewicht();
         } catch (NullPointerException np) {
@@ -120,7 +120,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void onAbbrechen(ActionEvent event) {
+    public void onAbbrechen() {
         for (Button btn : waren) {
             btn.setDisable(false);
         }

@@ -1,13 +1,10 @@
 package packungsversand;
 
-import com.fazecast.jSerialComm.SerialPort;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PortPicker extends Stage {
     PortPicker(Stage parentStage) throws IOException {
